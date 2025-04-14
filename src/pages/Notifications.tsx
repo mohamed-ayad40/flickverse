@@ -46,6 +46,7 @@ const Notifications: React.FC = () => {
     mentions: [
       {
         id: 1,
+        type: "mention",
         user: "MovieBuff123",
         content: "mentioned you in a post about The Matrix",
         time: "2m ago",
@@ -54,6 +55,7 @@ const Notifications: React.FC = () => {
       },
       {
         id: 2,
+        type: "mention",
         user: "SeriesEnthusiast",
         content: "mentioned you in a discussion about Stranger Things",
         time: "1d ago",
@@ -64,6 +66,7 @@ const Notifications: React.FC = () => {
     comments: [
       {
         id: 1,
+        type: "comment",
         user: "CinemaFan",
         content: "commented on your post: 'Great analysis!'",
         time: "1h ago",
@@ -72,6 +75,7 @@ const Notifications: React.FC = () => {
       },
       {
         id: 2,
+        type: "comment",
         user: "FilmBuff",
         content: "commented: 'I completely agree with your points'",
         time: "5h ago",
@@ -82,6 +86,7 @@ const Notifications: React.FC = () => {
     likes: [
       {
         id: 1,
+        type: "like",
         user: "SeriesLover",
         content: "liked your post about Breaking Bad",
         time: "15m ago",
@@ -90,6 +95,7 @@ const Notifications: React.FC = () => {
       },
       {
         id: 2,
+        type: "like",
         user: "MovieCritic",
         content: "liked your review of The Dark Knight",
         time: "2d ago",
@@ -100,6 +106,7 @@ const Notifications: React.FC = () => {
     shares: [
       {
         id: 1,
+        type: "share",
         user: "FilmCritic",
         content: "shared your review of Inception",
         time: "3h ago",
@@ -108,6 +115,7 @@ const Notifications: React.FC = () => {
       },
       {
         id: 2,
+        type: "share",
         user: "CinemaLover",
         content: "shared your post about Marvel movies",
         time: "1d ago",
@@ -132,10 +140,6 @@ const Notifications: React.FC = () => {
     }
   };
 
-  const handleNotificationClick = (notification: any) => {
-    // Here you can add the logic for what happens when a notification is clicked
-    console.log("Notification clicked:", notification);
-  };
 
   return (
     <div className="h-full p-6 max-w-xl mx-auto">

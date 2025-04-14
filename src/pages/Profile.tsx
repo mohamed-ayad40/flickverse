@@ -7,7 +7,6 @@ import {
   FaComment,
   FaShare,
   FaBookmark,
-  FaCog,
   FaFilm,
   FaTv,
   FaCalendarAlt,

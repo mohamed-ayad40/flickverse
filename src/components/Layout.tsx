@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; // Added ReactNode import
 import { Outlet } from "react-router-dom";
 import {
   FaHome,
@@ -14,9 +14,9 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-interface LayoutProps {
-  children?: ReactNode;
-}
+// Define interfaces for your data structures
+
+
 
 const trendingMovies = [
   {
@@ -230,7 +230,6 @@ const suggestedUsers = [
 ];
 
 const Layout: React.FC = () => {
-  console.log("Layout component rendered");
   const [following, setFollowing] = useState<string[]>([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
   const [showAllMovies, setShowAllMovies] = useState(false);

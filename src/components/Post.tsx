@@ -48,10 +48,6 @@ const Post: React.FC<PostProps> = ({
   const handleBookmark = () => onBookmark(post.id);
   const handleStar = () => onStar?.(post.id);
 
-  const handleHashtagClick = (hashtag: string) => {
-    console.log(`Clicked hashtag: ${hashtag}`);
-    // Here you would typically navigate to a search or hashtag page
-  };
 
   return (
     <div className="bg-white rounded-xl p-6 mb-6 transform transition-all duration-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] relative overflow-hidden group border-4 border-purple-100 hover:border-purple-300">
