@@ -1,6 +1,5 @@
 {
   "name": "flickverse",
-  "homepage": "https://mohamed-ayad40.github.io/flickverse/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
