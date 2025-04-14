@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -7,8 +7,8 @@ import Messages from "./pages/Messages";
 import Settings from "./pages/Settings";
 import Notifications from "./pages/Notifications";
 import Explorer from "./pages/Explorer";
+
 const App: React.FC = () => {
-  console.log("App component rendered");
   return (
     <Router>
       <Routes>
