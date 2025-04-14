@@ -5,12 +5,14 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets', // This ensures CSS files are properly placed
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name]-[hash][extname]?v=[hash]' // Adds hash-based versioning
+        // This matches your current file naming pattern
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js'
       }
-    },
+    }
   }
 })
