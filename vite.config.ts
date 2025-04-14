@@ -9,7 +9,7 @@ export default defineConfig({
     assetsDir: 'assets', // This ensures CSS files are properly placed
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name]-[hash][extname]'
+        assetFileNames: 'assets/[name]-[hash][extname]?v=[hash]' // Adds hash-based versioning
       }
     },
   }
