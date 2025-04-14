@@ -7,5 +7,10 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets', // This ensures CSS files are properly placed
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]'
+      }
+    },
   }
 })
