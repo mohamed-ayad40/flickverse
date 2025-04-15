@@ -1,13 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  css: {
-    postcss: './postcss.config.js',
-  },
   plugins: [react()],
-  base: '/',
+  base: '/', // Use '/' for Vercel or '/repo-name/' for GitHub Pages
   build: {
-    assetsDir: 'assets',
-  }
-})
+    outDir: 'dist', // Output directory
+    assetsDir: 'assets', // Static assets folder
+    emptyOutDir: true, // Clear the dist folder on build
+  },
+});
