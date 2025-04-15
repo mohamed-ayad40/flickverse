@@ -5,16 +5,20 @@
 @tailwind utilities;
 
 :root {
+  /* Move font declarations first */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Then define your custom properties */
   --primary-color: #8b5cf6;
   --secondary-color: #6d28d9;
   --background-color: #f3f4f6;
   --text-color: #1f2937;
   --font-poppins: 'Poppins', sans-serif;
   --font-inter: 'Inter', sans-serif;
-  
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+
+  /* Other properties */
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
