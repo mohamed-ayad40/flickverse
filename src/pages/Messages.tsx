@@ -103,10 +103,7 @@ const Messages: React.FC = () => {
   };
 
   const handleSendMessage = () => {
-    if (newMessage.trim()) {
-      // Here you would typically send the message to your backend
       setNewMessage("");
-    }
   };
 
   return (
@@ -170,7 +167,7 @@ const Messages: React.FC = () => {
       </div>
 
       {/* Chat Window */}
-      <div className="flex-1 flex flex-col bg-gray-50 max-w-3xl">
+      <div className="flex-1 flex flex-col bg-gray-50">
         {selectedChat ? (
           <>
             {/* Chat Header */}

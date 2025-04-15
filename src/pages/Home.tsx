@@ -435,7 +435,6 @@ const Home: React.FC = () => {
     },
   ]);
 
-  // Filter posts for My Series section (posts from followed users)
   const mySeriesPosts = posts.filter((post) =>
     ["seriesenthusiast", "tvjunkie", "seriesaddict", "seriesexpert"].includes(
       post.author.username
@@ -452,7 +451,6 @@ const Home: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the post to your backend
     console.log("New post:", {
       content: newPostContent,
       images: selectedImages,
@@ -469,15 +467,14 @@ const Home: React.FC = () => {
     const end = textarea.selectionEnd;
     const text = newPostContent;
 
-    // Insert emoji at cursor position
+
     const newText =
       text.substring(0, start) + emojiObject.emoji + text.substring(end);
     setNewPostContent(newText);
 
-    // Set cursor position after the inserted emoji
+
     const newCursorPosition = start + emojiObject.emoji.length;
 
-    // Use requestAnimationFrame to ensure the textarea is updated before setting cursor
     requestAnimationFrame(() => {
       textarea.focus();
       textarea.setSelectionRange(newCursorPosition, newCursorPosition);
@@ -486,7 +483,6 @@ const Home: React.FC = () => {
     setShowEmojiPicker(false);
   };
 
-  // Close emoji picker when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -517,10 +513,6 @@ const Home: React.FC = () => {
     );
   };
 
-  const handleComment = (postId: string) => {
-    // Handle comment functionality
-    console.log(`Commenting on post ${postId}`);
-  };
 
   const handleShare = (postId: string) => {
     setPosts((prevPosts) =>
@@ -548,6 +540,41 @@ const Home: React.FC = () => {
     );
   };
 
+
+  interface Carousel {
+    name: string,
+    urlImage: string
+  }
+
+
+  const carouselMovies: Carousel[] = [
+    {
+      name: "Dune: Part Two",
+      urlImage: "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg"
+    },
+    {
+      name: "Oppenheimer",
+      urlImage: "https://upload.wikimedia.org/wikipedia/ar/d/d9/%D8%A3%D9%88%D8%A8%D9%86%D9%87%D8%A7%D9%8A%D9%85%D8%B1%28%D9%81%D9%8A%D9%84%D9%85%29.jpg"
+    },
+    {
+      name: "The Last of Us",
+      urlImage: "https://upload.wikimedia.org/wikipedia/ar/b/bb/%D9%85%D9%84%D8%B5%D9%82_%D9%85%D8%B3%D9%84%D8%B3%D9%84_%D8%B0%D8%A7_%D9%84%D8%A7%D8%B3%D8%AA_%D8%A3%D9%88%D9%81_%D8%A3%D8%B3.jpeg"
+    },
+    {
+      name: "Succession",
+      urlImage: "https://m.media-amazon.com/images/I/51Z7c8T4OtL._SX300_SY300_QL70_FMwebp_.jpg"
+    },
+    {
+      name: "Interstellar",
+      urlImage: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+    },
+    {
+      name: "Avengers: End Game",
+      urlImage: "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg"
+    },
+
+  ]
+
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -571,33 +598,35 @@ const Home: React.FC = () => {
               </h1>
             </div>
             
-            {/* Tagline */}
             <p className="mt-2 text-xl text-indigo-100 max-w-2xl">
               Your ultimate community for movie buffs and series enthusiasts
             </p>
             
-            {/* Featured Content Carousel (mini version) */}
             <div className="mt-8 flex space-x-4 overflow-x-auto pb-4 w-full max-w-2xl scrollbar-hide">
-              {[
-                'Dune: Part Two',
-                'Oppenheimer',
-                'The Last of Us',
-                'Succession',
-                'Interstellar'
-              ].map((title, index) => (
-                <div key={index} className="flex-shrink-0 relative group">
-                  <div className="w-24 h-32 bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                    <div className="absolute bottom-2 left-2 right-2">
-                      <p className="text-xs font-medium text-white truncate">{title}</p>
+              {carouselMovies.map(({ name, urlImage }, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 cursor-pointer relative group overflow-hidden transition-transform duration-500 hover:scale-105"
+                >
+                  <div className="w-24 h-32 bg-gray-800 rounded-lg overflow-hidden shadow-lg group-hover:shadow-yellow-400/50 transition-all duration-500 ease-out relative">
+                    <img
+                      src={urlImage}
+                      alt={name}
+                      className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500 ease-out"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
+
+                    <div className="absolute bottom-2 left-2 right-2 z-20">
+                      <p className="text-xs font-semibold text-white truncate">{name}</p>
                     </div>
+
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-yellow-400 rounded-lg transition-all duration-500 animate-glow pointer-events-none"></div>
                   </div>
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-yellow-400 rounded-lg transition-all duration-300"></div>
                 </div>
               ))}
             </div>
             
-            {/* Quick Stats */}
             <div className="mt-6 flex space-x-6">
               <div className="text-center">
                 <p className="text-2xl font-bold text-yellow-400">10K+</p>
@@ -644,7 +673,7 @@ const Home: React.FC = () => {
                       setShowEmojiPicker(!showEmojiPicker);
                       textareaRef.current?.focus();
                     }}
-                    className="text-gray-500 hover:text-indigo-600 transition-colors duration-200 group"
+                    className="text-gray-500 hover:text-indigo-600 transition-colors duration-200 group bg-white"
                   >
                     <FaSmile className="text-xl group-hover:scale-110 transition-transform duration-200" />
                   </button>
@@ -718,42 +747,57 @@ const Home: React.FC = () => {
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex justify-center space-x-4 mb-6 ">
-        <button
-          onClick={() => setActiveTab("popular")}
-          className={`relative px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${
-            activeTab === "popular"
-              ? "bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg shadow-[6px_6px_0px_black] border border-white border-4 border-solid"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-          }`}
-        >
-          <span className="relative z-10 flex items-center">
-            <FaFire className="mr-2" />
-            Popular
-          </span>
-          {activeTab === "popular" && (
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 opacity-0 animate-pulse shadow-[6px_6px_0px_black] border border-white border-4 border-solid" />
-          )}
-        </button>
-        <button
-          onClick={() => setActiveTab("mySeries")}
-          className={`relative px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-[6px_6px_0px_black] border border-white border-4 border-solid ${
-            activeTab === "mySeries"
-              ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-          }`}
-        >
-          <span className="relative z-10 flex items-center">
-            <FaTv className="mr-2" />
-            My Series
-          </span>
-          {activeTab === "mySeries" && (
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 animate-pulse " />
-          )}
-        </button>
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md py-4 px-6 border-b border-gray-200 outline-none">
+        <div className="flex justify-center space-x-4 max-w-4xl mx-auto">
+          <button
+            onClick={(e) => {
+              setActiveTab("popular");
+              const btn = e.currentTarget;
+              btn.classList.remove("animate-click");
+              void btn.offsetWidth;
+              btn.classList.add("animate-click");
+            }}
+            className={`relative px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 outline-none ${
+              activeTab === "popular"
+                ? "bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-[6px_6px_0px_black] border-4 border-white "
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-4 border-transparent"
+            }`}
+          >
+            <span className="relative z-10 flex items-center">
+              <FaFire className="mr-2" />
+              Popular
+            </span>
+            {activeTab === "popular" && (
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 opacity-0 animate-pulse shadow-[6px_6px_0px_black] border-4 border-white" />
+            )}
+          </button>
+
+          <button
+            onClick={(e) => {
+              setActiveTab("mySeries");
+              const btn = e.currentTarget;
+              btn.classList.remove("animate-click");
+              void btn.offsetWidth;
+              btn.classList.add("animate-click");
+            }}
+            className={`relative px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-[6px_6px_0px_black] border-4 ${
+              activeTab === "mySeries"
+                ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-white"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-transparent"
+            } active-click:scale-95`}
+          >
+            <span className="relative z-10 flex items-center">
+              <FaTv className="mr-2" />
+              My Series
+            </span>
+            {activeTab === "mySeries" && (
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 animate-pulse" />
+            )}
+          </button>
+        </div>
       </div>
 
-      {/* Posts Feed */}
+      {/* Posts */}
       <div className="space-y-6 max-w-xl mx-auto">
         {(activeTab === "popular" ? posts : mySeriesPosts).map((post) => (
           <Post
@@ -777,7 +821,6 @@ const Home: React.FC = () => {
               hashtags: post.hashtags,
             }}
             onLike={handleLike}
-            onComment={handleComment}
             onShare={handleShare}
             onBookmark={handleBookmark}
             onStar={handleStar}

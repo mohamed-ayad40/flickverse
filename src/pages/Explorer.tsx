@@ -203,10 +203,6 @@ const UserInfo = styled.div`
   }
 `;
 
-// Using actual movie/TV show images from a free API
-// ... (previous imports and types remain the same)
-
-// Updated fakeContent array with all working images
 const fakeContent: ContentItem[] = [
     {
       id: '1',
@@ -248,7 +244,7 @@ const fakeContent: ContentItem[] = [
       id: '4',
       title: 'Best Sci-Fi Movies',
       type: 'list',
-      imageUrl: 'https://image.tmdb.org/t/p/w500/6UH52Fmau8RPsMAbQbjwN3wJSCj.jpg', // Blade Runner 2049 image
+      imageUrl: 'https://image.tmdb.org/t/p/w500/6UH52Fmau8RPsMAbQbjwN3wJSCj.jpg', // Blade Runner
       user: {
         name: 'scifigeek',
         avatar: 'https://ui-avatars.com/api/?name=Scifigeek&background=random',
@@ -271,7 +267,7 @@ const fakeContent: ContentItem[] = [
       id: '6',
       title: 'Succession',
       type: 'series',
-      imageUrl: 'https://image.tmdb.org/t/p/w500/5n2a4kWujMfxk5LTHYv0vKTQNox.jpg',
+      imageUrl: 'https://m.media-amazon.com/images/I/51Z7c8T4OtL._SX300_SY300_QL70_FMwebp_.jpg',
       year: 2018,
       rating: 4.9,
       genres: ['Drama'],
@@ -284,7 +280,7 @@ const fakeContent: ContentItem[] = [
       id: '7',
       title: 'Denis Villeneuve',
       type: 'person',
-      imageUrl: 'https://image.tmdb.org/t/p/w500/9NsR4HREs4b7Qy5rHBSImYHiMXy.jpg', // New working image
+      imageUrl: 'https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSwxo0jrw_rFAbc2mWyN3UwqwkFYjx5u7o0jJRr_kMf7TX1-A2g00foS9M2o7PnbsKmcpPmoBeGVNljkbo',
       user: {
         name: 'directorfan',
         avatar: 'https://ui-avatars.com/api/?name=Directorfan&background=random',
@@ -294,7 +290,7 @@ const fakeContent: ContentItem[] = [
       id: '8',
       title: 'Horror Movies',
       type: 'list',
-      imageUrl: 'https://image.tmdb.org/t/p/w500/4XLZS2xvdv5rxizzTUVREtRyw95.jpg', // The Conjuring image
+      imageUrl: 'https://image.tmdb.org/t/p/w500/4XLZS2xvdv5rxizzTUVREtRyw95.jpg',
       user: {
         name: 'horrorfanatic',
         avatar: 'https://ui-avatars.com/api/?name=Horrorfan&background=random',
@@ -304,7 +300,7 @@ const fakeContent: ContentItem[] = [
       id: '9',
       title: 'Interstellar',
       type: 'movie',
-      imageUrl: 'https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg', // Additional movie
+      imageUrl: 'https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg',
       year: 2014,
       rating: 4.8,
       genres: ['Sci-Fi', 'Adventure'],
@@ -315,7 +311,6 @@ const fakeContent: ContentItem[] = [
     }
   ];
   
-  // ... (rest of the code remains the same)
 
 const filterOptions: FilterOption[] = [
   { id: 'all', label: 'All', type: 'all' },
@@ -328,17 +323,14 @@ const filterOptions: FilterOption[] = [
   { id: 'highest-rated', label: 'Highest Rated', type: 'all' },
 ];
 
-// Component
 const ExplorerPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const filteredContent = fakeContent.filter((item) => {
-    // Filter by type
     const typeMatch =
       activeFilter === 'all' || item.type === activeFilter || filterOptions.find((f) => f.id === activeFilter)?.type === 'all';
     
-    // Filter by search query
     const searchMatch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
     
     return typeMatch && searchMatch;

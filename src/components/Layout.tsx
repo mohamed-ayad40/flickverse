@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // Added ReactNode import
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import {
   FaHome,
@@ -14,7 +14,6 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-// Define interfaces for your data structures
 
 
 
@@ -258,14 +257,15 @@ const Layout: React.FC = () => {
       <div className="flex">
         {/* Left Sidebar */}
         <div className="w-64 bg-gradient-to-b from-indigo-900 to-blue-900 p-4 fixed left-0 top-0 h-screen flex flex-col">
-          <div className="mb-8">
-            <h1 className="text-2xl font-bold text-white mb-2 font-poppins">
-              FlickVerse
+          <a href="/" className="mb-8">
+            <h1 className="font-bold text-white mb-2 font-poppins text-4xl cursor-pointer">
+              <span className="text-indigo-300">Flick</span>
+              <span className="text-yellow-400">Verse</span>
             </h1>
             <p className="text-indigo-200 text-sm font-inter">
               Your movie & series community
             </p>
-          </div>
+          </a>
 
           {/* Profile Card */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6 border border-white/20 shadow-lg">
@@ -401,16 +401,13 @@ const Layout: React.FC = () => {
           {/* Create Post Button */}
           <div className="mt-auto">
             <button className="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-3 px-4 rounded-xl font-medium hover:from-purple-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 relative overflow-hidden group font-poppins border-2 border-black shadow-[5px_6px_0px_black] hover:shadow-[3px_4px_0px_black] active:shadow-[1px_2px_0px_black] active:translate-y-1">
-              {/* Shimmer effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
 
-              {/* Content */}
               <div className="relative flex items-center justify-center space-x-2">
                 <FaPlus className="text-lg transform group-hover:rotate-90 transition-transform duration-300" />
                 <span>Create Post</span>
               </div>
 
-              {/* Glow effect */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/20 to-indigo-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
           </div>

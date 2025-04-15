@@ -28,7 +28,6 @@ interface PostProps {
     hashtags?: string;
   };
   onLike: (id: string) => void;
-  onComment: (id: string) => void;
   onShare: (id: string) => void;
   onBookmark: (id: string) => void;
   onStar?: (id: string) => void;
@@ -37,13 +36,11 @@ interface PostProps {
 const Post: React.FC<PostProps> = ({
   post,
   onLike,
-  onComment,
   onShare,
   onBookmark,
   onStar,
 }) => {
   const handleLike = () => onLike(post.id);
-  const handleComment = () => onComment(post.id);
   const handleShare = () => onShare(post.id);
   const handleBookmark = () => onBookmark(post.id);
   const handleStar = () => onStar?.(post.id);
@@ -51,13 +48,10 @@ const Post: React.FC<PostProps> = ({
 
   return (
     <div className="bg-white rounded-xl p-6 mb-6 transform transition-all duration-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] relative overflow-hidden group border-4 border-purple-100 hover:border-purple-300">
-      {/* Border gradient effect */}
       <div className="absolute inset-0 rounded-xl border-4 border-transparent group-hover:border-purple-400/20 transition-all duration-500 pointer-events-none" />
 
-      {/* Cinematic gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-50/0 via-indigo-50/0 to-blue-50/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      {/* Movie screen effect */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* Main content */}
@@ -126,7 +120,6 @@ const Post: React.FC<PostProps> = ({
               <span className="text-xs">{post.likes}</span>
             </button>
             <button
-              onClick={handleComment}
               className="flex bg-white items-center space-x-0.5 text-gray-500 hover:text-blue-500 transition-all duration-300 transform hover:scale-105"
             >
               <FaComment className="text-base" />

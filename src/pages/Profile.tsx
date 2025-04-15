@@ -144,7 +144,7 @@ const Profile: React.FC = () => {
           ))}
         </div>
 
-        {/* Activity Feed */}
+        {/* Activity */}
         <div className="mt-4 space-y-4">
           {recentActivity.map((activity) => (
             <div

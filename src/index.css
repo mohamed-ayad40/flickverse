@@ -5,12 +5,10 @@
 @tailwind utilities;
 
 :root {
-  /* Move font declarations first */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  /* Then define your custom properties */
   --primary-color: #8b5cf6;
   --secondary-color: #6d28d9;
   --background-color: #f3f4f6;
@@ -18,17 +16,12 @@
   --font-poppins: 'Poppins', sans-serif;
   --font-inter: 'Inter', sans-serif;
 
-  /* Other properties */
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
 }
 
-/* Rest of your CSS remains exactly the same */
 a {
   font-weight: 500;
   color: #646cff;
@@ -41,8 +34,7 @@ a:hover {
 body {
   margin: 0;
   font-family: var(--font-inter);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
   background-color: var(--background-color);
   color: var(--text-color);
   min-width: 320px;
@@ -67,10 +59,7 @@ button {
 button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -85,7 +74,6 @@ button:focus-visible {
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -103,7 +91,6 @@ button:focus-visible {
   background: #555;
 }
 
-/* Custom animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -117,7 +104,6 @@ button:focus-visible {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Custom utility classes */
 .hover-scale {
   transition: transform 0.2s ease-in-out;
 }
@@ -132,4 +118,22 @@ button:focus-visible {
 
 .font-inter {
   font-family: var(--font-inter);
+}
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-jump {
+  animation: jump 0.5s ease;
+}
+.active-click {
+  transform: scale(0.95) !important;
+}
+@keyframes click {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+.animate-click {
+  animation: click 0.3s ease;
 }
