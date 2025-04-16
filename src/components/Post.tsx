@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaHeart,
   FaComment,
@@ -7,6 +7,7 @@ import {
   FaEllipsisH,
   FaStar,
 } from "react-icons/fa";
+import HeartAnimation from "./HeartAnimation";
 
 interface PostProps {
   post: {
@@ -40,14 +41,26 @@ const Post: React.FC<PostProps> = ({
   onBookmark,
   onStar,
 }) => {
-  const handleLike = () => onLike(post.id);
+  // const handleLike = () => onLike(post.id);
   const handleShare = () => onShare(post.id);
   const handleBookmark = () => onBookmark(post.id);
   const handleStar = () => onStar?.(post.id);
-
+  const [showHeart, setShowHeart] = useState(false);
+  const handleLike = () => {
+    setTimeout(() => setShowHeart(false), 3000);
+    onLike(post.id);
+    if (!post.isLiked) {
+      setShowHeart(true);
+      return
+    }
+  };
 
   return (
     <div className="bg-white rounded-xl p-6 mb-6 transform transition-all duration-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] relative overflow-hidden group border-4 border-purple-100 hover:border-purple-300">
+      {/* Heart Animation - Positioned relative to the post */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 pointer-events-none z-50">
+        <HeartAnimation isVisible={showHeart} size={2} />
+      </div>
       <div className="absolute inset-0 rounded-xl border-4 border-transparent group-hover:border-purple-400/20 transition-all duration-500 pointer-events-none" />
 
       <div className="absolute inset-0 bg-gradient-to-br from-purple-50/0 via-indigo-50/0 to-blue-50/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
